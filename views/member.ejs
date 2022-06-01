@@ -1,0 +1,39 @@
+<% layout('layout/boilerplate') %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="text-center display-4">NEW MEMBER</h3>
+        <form  name="form" actiom="/member" method="post">
+            <div class="mb-3 ">
+                <label class="form-label" for="cust_name">MEMBER NAME:</label>
+                <input class="form-control" type="text" id="cust_name" name="Member_Name">
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label" for="cust_email">MEMBER EMAIL:</label>
+                <input class="form-control" type="email" id="cust_email" name="Member_Email">
+            </div>
+            <div class="mb-3">
+                <label for="mobile" class="form-label">MEMBER PHONE</label>
+                <input type="text" id="mobile" name="Member_phone" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="cust_email">CUSTOMER ADDRESS:</label>
+                <textarea class="form-control" name="Member_Address" id="address" cols="1" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="branch_id">BRANCH_ID:</label>
+                <input class="form-control" type="text" id="branch_id" name="Branch_Id">
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary">Add Member</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    

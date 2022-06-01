@@ -1,0 +1,41 @@
+<% layout('layout/boilerplate') %>
+<div class="center">
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="display-4 text-center">ISSUE A BOOK</h4>
+        <form name="form" actiom="/issue" method="post">
+                <div class="mb-3">
+                <label class="form-label" for="book_id" >BOOK ID</label>
+                    <input class="form-control" type="text" id="book_id"  name="Book_Id">
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label" for="issue_id" >ISSUE ID</label>
+                    <input class="form-control" type="text" id="issue_id"  name="Issue_Id">
+            </div>
+    
+            <div class="mb-3 ">
+                <label class="form-label"  for="bk_name">BOOK NAME</label>
+                <input class="form-control" type="text" id="bk_name" name="Book_Name"> 
+            </div>
+            
+            <div class="mb-3 ">
+                <label class="form-label" for="author"> DATE_ISSUE</label>
+                <input class="form-control" type="date" id="issue_date" name="Issue_Date">
+                
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="author">EXPIRY DATE</label>
+                <input class="form-control" type="date" id="expire_date" name="Expiry_Date">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="author">Member ID</label>
+                <input class="form-control" type="number" id="cust_id" name="Member_Id">
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary">ISSUE A BOOK</button>
+            </div>
+        </div> 
+    

@@ -1,0 +1,41 @@
+<% layout('layout/boilerplate') %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+            <div class="card shadow">
+                <div class="card-body">
+        <h4 class="display-4 text-center">New Staff </h4>
+        <form action="/staff" method="post">
+        <div class="form-group mb-3">
+                <label class="form-label" for="name">Staff Name</label>
+                <input type="text" name="Staff_Name" id=""name class="form-control">
+        </div> 
+        <div class="form-group mb-3">
+                 <label class="form-label" for="add">Address:</label>
+                 <textarea class="form-control" name="Staff_Address" id="" cols="100" rows="1"> </textarea>
+        </div>
+        <div class="form-group mb-3">
+                <label class="form-label" for="gender"> Staff Gender:</label>
+                <input type="radio" name="Staff_Gender" id="male" value ="Male" >
+                <label for="male" class="form-label">&nbsp Male</label>
+                <input type="radio" name="Staff_Gender" id="gender" value ="Female" >
+                <label for="female" class="form-label">&nbsp Female</label>
+        </div>
+        <div class="form-group mb-3">
+                <label class="form-label" id="phone"> Staff Phone:</label>
+                <input type="number" name="Staff_Phone" id="phone" class="form-control">
+        </div> 
+        <div class="form-group mb-3">
+                <label  class="form-label" id="branch_id"> Branch Id:</label>
+                <input type="text" name="Branch_Id" id="branch_id" class="form-control">
+        </div>
+        <div class="d-grid gap-2">
+               <button class="btn btn-primary">Add Staff</button>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
