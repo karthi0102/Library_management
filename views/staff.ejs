@@ -24,7 +24,7 @@
         </div>
         <div class="form-group mb-3">
                 <label class="form-label" id="phone"> Staff Phone:</label>
-                <input type="number" name="Staff_Phone" id="phone" class="form-control">
+                <input type="tel" name="Staff_Phone" id="phone" class="form-control">
         </div> 
         <div class="form-group mb-3">
                 <label  class="form-label" id="branch_id"> Branch Id:</label>
@@ -32,6 +32,12 @@
         </div>
         <div class="d-grid gap-2">
                <button class="btn btn-primary">Add Staff</button>
+               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                DELETE A STAFF
+              </button>
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticModel">
+                UPDATE A STAFF
+              </button>
         </div>
         </form>
     </div>
@@ -39,3 +45,55 @@
 </div>
 </div>
 </div>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">DELETE A BRANCH</h5>
+            </div>
+            <div class="modal-body">
+              <form action="/staff?_method=DELETE" method="post">
+                <div class="mb-3">
+                    <label for="BRANCH_id" class="form-label">STAFF ID</label>
+                    <input type="text" class="form-control" name="Staff_Id" id="BRANCH_id">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-danger">DELETE</button>
+                </div>
+            </form>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    
+      <div class="modal fade" id="staticModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticModel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">UPDATE A BRANCH</h5>
+            </div>
+            <div class="modal-body">
+              <form action="/staff?_method=PUT" method="post">
+                <div class="mb-3">
+                    <label for="BRANCH_id" class="form-label">STAFF ID</label>
+                    <input type="text" class="form-control" name="Staff_Id" id="BRANCH_id">
+                </div>
+                    <div class="form-group mb-3">
+                      <label class="form-label" for="bname"> PHONE NUMBER</label>
+                      <input type="tel" name="Phone" id="bname" class="form-control">
+                  </div> 
+                  
+                <div class="d-grid gap-2">
+                    <button class="btn btn-warning">UPDATE</button>
+                </div>
+            </form>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>

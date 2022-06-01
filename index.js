@@ -176,7 +176,7 @@ app.get('/staff',(req,res)=>{
 
 app.post('/staff',(req,res)=>{
     let {Staff_Name,Staff_Address,Staff_Gender,Staff_Phone,Branch_Id} = req.body
-    let Staff_Id=uuidv4();
+    const Staff_Id=Math.floor(1000* Math.random()*9000)
     var sql=`INSERT INTO STAFF(Staff_id,Staff_Name,Staff_Address,Staff_Gender,Staff_Phone,Branch_Id) VALUES("${Staff_Id}","${Staff_Name}","${Staff_Address}",
     "${Staff_Gender}","${Staff_Phone}","${Branch_Id}");`
     connection.query(sql,(err,rows,fields)=>{
@@ -188,7 +188,30 @@ app.post('/staff',(req,res)=>{
     })
 })
 
+app.put('/staff',(req,res)=>{
+    let{Staff_Id,Phone}=req.body
+    var sql=`UPDATE STAFF SET Staff_Phone="${Phone}" WHERE Staff_id="${Staff_Id}";`
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows);
+            res.redirect("/");
+        }
+    })
 
+})
+
+app.delete('/staff',(req,res)=>{
+        let {Staff_Id}=req.body;
+        var sql=`DELETE FROM STAFF WHERE Staff_id ="${Staff_Id}"`;
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows);
+            res.redirect("/");
+        }
+    })
+})
 
 app.listen(5000,()=>{
     console.log("Server is running")
