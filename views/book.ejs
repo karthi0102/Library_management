@@ -35,10 +35,85 @@
             </div>
             <div class="d-grid gap-2">
                 <button class="btn btn-primary">ADD BOOK</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    DELETE A BOOK
+                  </button>
+                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticModel">
+                    UPDATE A BOOK
+                  </button>
             </div>
-            </form>
+
+          </form>
         </div>
     </div>
     </div>
     </div>
     </div>
+
+   
+      
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">DELETE A BOOK</h5>
+              
+            </div>
+            <div class="modal-body">
+              <form action="/book?_method=DELETE" method="post">
+                <div class="mb-3">
+                    <label for="book_id" class="form-label">BOOK ID</label>
+                    <input type="text" class="form-control" name="Book_Id" id="book_id">
+                </div>
+               
+                <div class="d-grid gap-2">
+                    <button class="btn btn-danger">DELETE</button>
+                </div>
+            </form>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="staticModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticModel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">UPDATE A BOOK</h5>
+              
+            </div>
+            <div class="modal-body">
+              <form action="/book?_method=PUT" method="post">
+                <div class="mb-3">
+                    <label for="book_id" class="form-label">BOOK ID</label>
+                    <input type="text" class="form-control" name="Book_Id" id="book_id">
+                </div>
+                <div class="mb-3 ">
+                  <label class="form-label" for="book_id" >BOOK NAME </label>
+                   <input class="form-control" type="text" id="Book_id"  name="Book_Name" autofocus> 
+              </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="edition">BOOK EDITION:</label>
+
+                  <select name="Book_Edition" class="form-select" id="year">
+                      <option >select</option>
+                      <option value="I EDITION">I EDITION</option>
+                      <option value="II EDITION">II EDITION</option>
+                      <option value="III EDITION">III EDITION</option>
+                      <option value="IV EDITION">IV EDITION</option>
+                  </select>    
+              </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-warning">UPDATE</button>
+                </div>
+            </form>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>

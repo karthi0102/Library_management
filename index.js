@@ -15,6 +15,7 @@ var mysql=require("mysql")
 
 const connection =require('./database');
 const { ppid } = require('process');
+const { CLIENT_FOUND_ROWS } = require('mysql/lib/protocol/constants/client');
 app.get('/',(req,res)=>{
     
     res.render('home.ejs')
@@ -28,8 +29,32 @@ app.get('/branch',(req,res)=>{+
 
 app.post('/branch',(req,res)=>{
     let {Branch_Name,Location}=req.body
-    const Branch_Id=uuidv4();
-    const sql = `INSERT INTO BRANCH(BRANCH_ID,BRANCHNAME,LOCATION) VALUES("${Branch_Id}","${Branch_Name}","${Location}")`
+    const Branch_Id=Math.floor(1000* Math.random()*9000)
+    const sql = `INSERT INTO BRANCH(Branch_Id,BranchName,Location) VALUES("${Branch_Id}","${Branch_Name}","${Location}")`
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows)
+            res.redirect('/')
+        }
+    })
+})
+
+app.put('/branch',(req,res)=>{
+    const {Branch_Id,Branch_Name,Location} = req.body;
+    const sql = `UPDATE BRANCH SET BranchName ="${Branch_Name}" , Location = "${Location}" WHERE Branch_Id = "${Branch_Id}"`;
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows)
+            res.redirect('/')
+        }
+    })
+})
+
+app.delete('/branch',(req,res)=>{
+    let {Branch_Id} = req.body;
+    const sql = `DELETE FROM BRANCH WHERE Branch_Id ="${Branch_Id}"`;
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
@@ -40,8 +65,47 @@ app.post('/branch',(req,res)=>{
 })
 
 app.get('/book',(req,res)=>{
-   
+    
     res.render('book.ejs')
+})
+
+app.post('/book',(req,res)=>{
+    let {Book_Name,Book_Author,Isbn,Book_Edition} =req.body.books;
+    const Book_Id=Math.floor(1000* Math.random()*9000)
+    console.log(Book_Id,Book_Name,Book_Author,Isbn,Book_Edition)
+    var sql = `INSERT INTO BOOK(Book_ID,Book_Name,Book_Author,Isbn,Book_Edition) VALUES("${Book_Id}","${Book_Name}","${Book_Author}","${Isbn}","${Book_Edition}");`
+    connection.query(sql,(err,rows,fields)=>{
+        if(err) console.log(err.message)
+        else {
+        console.log(rows)
+        res.redirect("/")
+        }
+    })
+})
+
+app.put('/book',(req,res)=>{
+    let {Book_Id,Book_Name,Book_Edition} = req.body
+    let sql = `Update BOOK SET Book_Name = "${Book_Name}" , Book_Edition ="${Book_Edition}" WHERE Book_Id="${Book_Id}"`;
+    connection.query(sql,(err,rows,fields)=>{
+        if(err) console.log(err.message)
+        else {
+        console.log(rows)
+        res.redirect("/")
+        }
+    })
+
+})
+
+app.delete('/book',(req,res)=>{
+    const {Book_Id} = req.body;
+    let sql=`DELETE FROM BOOK WHERE Book_Id ="${Book_Id}"`;  
+    connection.query(sql,(err,rows,fields)=>{
+        if(err) console.log(err.message)
+        else {
+        console.log(rows)
+        res.redirect("/")
+        }
+    })  
 })
 
 app.get('/view/books',(req,res)=>{  
@@ -55,19 +119,7 @@ app.get('/view/books',(req,res)=>{
     })
 })
 
-app.post('/book',(req,res)=>{
-    let {Book_Name,Book_Author,Isbn,Book_Edition} =req.body.books;
-    const Book_Id=uuidv4()
-    console.log(Book_Id,Book_Name,Book_Author,Isbn,Book_Edition)
-    var sql = `INSERT INTO BOOK(Book_ID,Book_Name,Book_Author,Isbn,Book_Edition) VALUES("${Book_Id}","${Book_Name}","${Book_Author}","${Isbn}","${Book_Edition}");`
-    connection.query(sql,(err,rows,fields)=>{
-        if(err) console.log(err.message)
-        else {
-        console.log(rows)
-        res.redirect("/")
-        }
-    })
-})
+
 
 app.get('/return',(req,res)=>{
     res.render('return.ejs')
