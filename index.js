@@ -154,6 +154,29 @@ app.post('/member',(req,res)=>{
     })
 })
 
+app.put('/member',(req,res)=>{
+    let {Member_Name,Member_Email,Member_Phone,Member_Address,Member_Id}=req.body
+    var sql=`UPDATE MEMBER SET MEMBER_NAME ="${Member_Name}" , MEMBER_EMAIL ="${Member_Email}" ,Member_PHONE="${Member_Phone}" ,MEMBER_ADDRESS="${Member_Address} WHERE MEMBER_ID="${Member_Id}" `
+    app.put('/member',(req,res)=>{
+        let {Member_Name,Member_Email,Member_Phone,Member_Address,Member_Id}=req.body
+        var sql=`UPDATE MEMBER SET `
+    })
+})
+
+app.delete('/member',(req,res)=>{
+    let {Member_Id} = req.body
+    var sql =`DELETE FROM MEMBER WHERE MEMBER_ID ="${Member_Id}"`
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows);
+            res.redirect("/");
+        }
+    })
+})
+
+
+
 app.get('/issue',(req,res)=>{
     res.render('issue.ejs')
 })
@@ -168,6 +191,35 @@ app.post("/issue",(req,res)=>{
             res.redirect("/");
         }
     })
+
+})
+
+app.put('/issue',(req,res)=>{
+    const{Issue_Id,Issue_Date} = req.body
+    var sql = `UPDATE ISSUE SET Issue_Date="${Issue_Date}" WHERE Issue_Id = "${Issue_Id}"`
+    var sql=`INSERT INTO STAFF(Staff_id,Staff_Name,Staff_Address,Staff_Gender,Staff_Phone,Branch_Id) VALUES("${Staff_Id}","${Staff_Name}","${Staff_Address}",
+    "${Staff_Gender}","${Staff_Phone}","${Branch_Id}");`
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows);
+            res.redirect("/");
+        }
+    })
+
+})
+
+app.delete("/issue",(req,res)=>{
+    const {Issue_Id} = req.body;
+    var sql=`DELETE FROM ISSUE  WHERE Issue_id = "${Issue_Id}"`
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows);
+            res.redirect("/");
+        }
+    })
+
 
 })
 app.get('/staff',(req,res)=>{
@@ -204,6 +256,24 @@ app.put('/staff',(req,res)=>{
 app.delete('/staff',(req,res)=>{
         let {Staff_Id}=req.body;
         var sql=`DELETE FROM STAFF WHERE Staff_id ="${Staff_Id}"`;
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            console.log(rows);
+            res.redirect("/");
+        }
+    })
+})
+
+app.get('/return',(req,res)=>{
+    res.render('return.ejs')
+})
+
+app.post('/return',(req,res)=>{
+    let {Staff_Name,Staff_Address,Staff_Gender,Staff_Phone,Branch_Id} = req.body
+    const Staff_Id=Math.floor(1000* Math.random()*9000)
+    var sql=`INSERT INTO STAFF(Staff_id,Staff_Name,Staff_Address,Staff_Gender,Staff_Phone,Branch_Id) VALUES("${Staff_Id}","${Staff_Name}","${Staff_Address}",
+    "${Staff_Gender}","${Staff_Phone}","${Branch_Id}");`
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{

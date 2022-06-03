@@ -29,6 +29,12 @@
             </div>
             <div class="d-grid gap-2">
                 <button class="btn btn-primary">Add Member</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    DELETE A MEMBER
+                  </button>
+                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticModel">
+                    UPDATE A MEMBER
+                  </button>
             </div>
         </div>
     </div>
@@ -36,4 +42,66 @@
     
     </div>
     </div>
+
     
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">DELETE A BOOK</h5>
+              
+            </div>
+            <div class="modal-body">
+              <form action="/book?_method=DELETE" method="post">
+                <div class="mb-3">
+                    <label for="book_id" class="form-label">MEMBER ID</label>
+                    <input type="text" class="form-control" name="Member_Id" id="book_id">
+                </div>
+               
+                <div class="d-grid gap-2">
+                    <button class="btn btn-danger">DELETE</button>
+                </div>
+            </form>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="staticModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticModel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">DELETE A MEMBER</h5>
+              
+            </div>
+            <div class="modal-body">
+              <form action="/book?_method=PUT" method="post">
+                <div class="mb-3">
+                    <label for="book_id" class="form-label">MEMBER ID</label>
+                    <input type="text" class="form-control" name="Member_Id" id="book_id">
+                </div>
+                <div class="mb-3 ">
+                  <label class="form-label" for="book_id" >MEMBER NAME </label>
+                   <input class="form-control" type="text" id="Book_id"  name="Member_Name" autofocus> 
+              </div>
+
+               <div class="mb-3">
+                   <label for="phone" class="form-label">MEMBER PHONE</label>
+                   <input type="tel" class="form-control" name="Member_Phone" id="phone">
+               </div>
+               <div class="mb-3">
+                <label for="add" class="form-label">MEMBER ADDRESS</label>
+               <textarea name="Member_Address" id="add" cols="4" class="form-control" rows="4"></textarea>
+            </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-warning">UPDATE</button>
+                </div>
+            </form>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>
