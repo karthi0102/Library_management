@@ -3,23 +3,19 @@ const app = express();
 const path=require('path')
 const ejsMate=require('ejs-mate');
 const methodOverride=require('method-override');
+var mysql=require("mysql")
+
+const connection =require('./database');
+const { ppid } = require('process');
+const { CLIENT_FOUND_ROWS } = require('mysql/lib/protocol/constants/client');
 app.engine('ejs',ejsMate)
 app.set("view engine",'ejs')
 app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(methodOverride('_method'))
-const { v4: uuidv4 } = require('uuid');
-
-var mysql=require("mysql")
-
-const connection =require('./database');
-const { ppid } = require('process');
-const { CLIENT_FOUND_ROWS } = require('mysql/lib/protocol/constants/client');
 app.get('/',(req,res)=>{
-    
     res.render('home.ejs')
-    
 })
 
 app.get('/branch',(req,res)=>{+
@@ -45,8 +41,7 @@ app.post('/branch',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows)
-            res.redirect('/')
+            res.redirect('/branch/view')
         }
     })
 })
@@ -57,8 +52,7 @@ app.put('/branch',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows)
-            res.redirect('/')
+            res.redirect('/branch/view')
         }
     })
 })
@@ -69,8 +63,7 @@ app.delete('/branch',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows)
-            res.redirect('/')
+            res.redirect('/branch/view')
         }
     })
 })
@@ -78,7 +71,6 @@ app.delete('/branch',(req,res)=>{
 //BOOKS
 
 app.get('/book',(req,res)=>{
-    
     res.render('book.ejs')
 })
 
@@ -87,7 +79,6 @@ app.get('/book/view',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            
            res.render('bookView.ejs',{rows})
         }
     })
@@ -102,8 +93,7 @@ app.post('/book',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if(err) console.log(err.message)
         else {
-        console.log(rows)
-        res.redirect("/")
+        res.redirect("/book/view")
         }
     })
 })
@@ -114,8 +104,7 @@ app.put('/book',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if(err) console.log(err.message)
         else {
-        console.log(rows)
-        res.redirect("/")
+        res.redirect("/book/view")
         }
     })
 
@@ -127,32 +116,11 @@ app.delete('/book',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if(err) console.log(err.message)
         else {
-        console.log(rows)
-        res.redirect("/")
+        res.redirect("/book/view")
         }
     })  
 })
 
-
-
-//---------------
-
-app.get('/return',(req,res)=>{
-    res.render('return.ejs')
-})
-app.post('/return',(req,res)=>{
-    const {Book_Id,Issue_Id,Staff_Id,Member_ID,Book_Name,Issue_Date,Expiry_Date}=req.body;
-    const Return_Id = Math.floor(1000* Math.random()*9000)
-    var sql= `INSERT INTO RETURN(Book_Id,Issue_Id,Staff_Id,Member_Id,Book_Name,Issue_Date,Expiry_Date,Return_ID) VALUES("${Book_Id}",
-    "${Issue_Id}","${Staff_Id}","${Member_ID}","${Book_Name}","${Issue_Date}","${Expiry_Date}","${Return_Id}")`
-    connection.query(sql,(err,rows,fields)=>{
-        if(err) console.log(err.message)
-        else {
-        console.log(rows)
-        res.redirect("/")
-        }
-    })
-})
 
 app.get('/member',(req,res)=>{
     res.render('member.ejs')
@@ -175,8 +143,7 @@ app.post('/member',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/member/view");
         }
     })
 })
@@ -184,9 +151,11 @@ app.post('/member',(req,res)=>{
 app.put('/member',(req,res)=>{
     let {Member_Name,Member_Email,Member_Phone,Member_Address,Member_Id}=req.body
     var sql=`UPDATE MEMBER SET MEMBER_NAME ="${Member_Name}" , MEMBER_EMAIL ="${Member_Email}" ,Member_PHONE="${Member_Phone}" ,MEMBER_ADDRESS="${Member_Address} WHERE MEMBER_ID="${Member_Id}" `
-    app.put('/member',(req,res)=>{
-        let {Member_Name,Member_Email,Member_Phone,Member_Address,Member_Id}=req.body
-        var sql=`UPDATE MEMBER SET `
+    connection.query(sql,(err,rows,fields)=>{
+        if (err) console.log(err.message)
+        else{
+            res.redirect("/member/view");
+        }
     })
 })
 
@@ -196,8 +165,7 @@ app.delete('/member',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/member/view");
         }
     })
 })
@@ -209,8 +177,6 @@ app.get('/issue',(req,res)=>{
 })
 
 app.get('/issue/view',(req,res)=>{
-
-
     let sql =`SELECT * FROM ISSUE,BOOK,Member,BRANCH WHERE ISSUE.Book_Id = BOOK.Book_Id and MEMBER.Member_Id = ISSUE.Member_Id and MEMBER.Branch_Id=BRANCH.Branch_Id;`
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
@@ -228,8 +194,7 @@ app.post("/issue",(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/issue/view");
         }
     })
 
@@ -243,8 +208,7 @@ app.put('/issue',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/issue/view");
         }
     })
 
@@ -256,8 +220,7 @@ app.delete("/issue",(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/issue/view");
         }
     })
 
@@ -273,11 +236,11 @@ app.get('/staff/view',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
             res.render("staffView.ejs",{rows});
         }
     })
 })
+
 app.post('/staff',(req,res)=>{
     let {Staff_Name,Staff_Address,Staff_Gender,Staff_Phone,Branch_Id} = req.body
     const Staff_Id=Math.floor(1000* Math.random()*9000)
@@ -286,8 +249,7 @@ app.post('/staff',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/staff/view");
         }
     })
 })
@@ -298,8 +260,7 @@ app.put('/staff',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/staff/view");
         }
     })
 
@@ -311,8 +272,7 @@ app.delete('/staff',(req,res)=>{
     connection.query(sql,(err,rows,fields)=>{
         if (err) console.log(err.message)
         else{
-            console.log(rows);
-            res.redirect("/");
+            res.redirect("/staff/view");
         }
     })
 })
