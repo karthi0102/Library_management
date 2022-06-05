@@ -1,0 +1,36 @@
+<% layout('layout/boilerplate') %> 
+<div class="container my-5">
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-body">
+
+          
+        <table class="table table-secondary table-hover">
+            <thead>
+            <tr>
+                <th scope="col">BOOK ID</th>
+                <th scope="col">BOOK NAME</th>
+                <th scope="col">BOOK AUTHOR</th>
+                <th scope="col">ISBN NUMBER</th>
+                <th scope="col">BOOK EDITION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let r of rows){ %> 
+                <tr>
+                    <td scope="row"><%= r.Book_Id %></td>
+                    <td><%= r.Book_Name %></td>
+                    <td><%= r.Book_Author%></td>
+                    <td><%= r.ISBN %></td>
+                    <td><%= r.Book_Edition %></td>
+                </tr>
+            <% } %> 
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>

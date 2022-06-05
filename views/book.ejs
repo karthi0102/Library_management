@@ -1,13 +1,18 @@
 <% layout('layout/boilerplate') %> 
-
+<style>
+  label{
+    color:#842E66;
+    font-size: 22px;
+  }
+</style>
 <div class="container mt-5 ">
         <div class="row my-3">
             <div class="col-lg-6 offset-lg-3">
-                <div class="card shadow">
+                <div class="card mt-5 shadow ">
                     <div class="card-body">
-               <h3 class="display-4 text-center">ADD A BOOK</h3>
+              
         <form class="row" name="form" action="/book" method="post">
-                <div class="mb-3 ">
+                <div class="mb-3">
                     <label class="form-label" for="book_id" >BOOK NAME </label>
                      <input class="form-control" type="text" id="Book_id"  name="books[Book_Name]" autofocus> 
                 </div>
@@ -33,16 +38,22 @@
                     <option value="IV EDITION">IV EDITION</option>
                 </select>    
             </div>
-            <div class="d-grid gap-2">
-                <button class="btn btn-primary">ADD BOOK</button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    DELETE A BOOK
-                  </button>
-                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticModel">
-                    UPDATE A BOOK
-                  </button>
+            <div class="col-3 d-grid gap-2">
+                <button class="btn btn-secondary">ADD </button>
             </div>
-;
+            <div class="col-3 d-grid gap-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                DELETE 
+              </button>
+            </div>
+            <div class="col-3 d-grid gap-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticModel">
+                UPDATE
+              </button>
+            </div>
+            <div class="col-3 d-grid gap-2">
+              <a href="/book/view" class="btn btn-secondary">VIEW</a>
+            </div>
           </form>
         </div>
     </div>
@@ -108,7 +119,7 @@
                   </select>    
               </div>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-warning">UPDATE</button>
+                    <button class="btn btn-secondary">UPDATE</button>
                 </div>
             </form>
             

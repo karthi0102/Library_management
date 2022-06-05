@@ -1,0 +1,47 @@
+
+
+
+<% layout('layout/boilerplate') %> 
+<div class="container my-5">
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-body">
+
+          
+        <table class="table table-secondary table-hover">
+            <thead>
+            <tr>
+                <th scope="col">MEMBER ID</th>
+                <th scope="col">MEMBER NAME</th>
+                <th scope="col">MEMBER EMAIL</th>
+                <th scope="col">MEMBER PHONE</th>
+                <th scope="col">MEMBER ADDRESS</th>
+                <th scope="col">BRANCH ID</th>
+                <th scope="col">BRANCH NAME</th>
+                <th scope="col">BRANCH LOCATION</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let r of rows){ %> 
+                <tr>
+                    <td scope="row"><%= r.Member_Id %></td>
+                    <td><%= r.Member_Name %></td>
+                    <td><%= r.Member_Email %></td>
+                    <td><%= r.Member_Phone %></td>
+                    <td><%= r.Member_Address  %> </td>
+                    <td><%= r.Branch_Id  %> </td>
+                    <td><%= r.BranchName  %> </td>
+                    <td><%= r.Location  %> </td>
+                  
+                </tr>
+            <% } %> 
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>

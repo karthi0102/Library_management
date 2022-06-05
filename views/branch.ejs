@@ -1,11 +1,18 @@
 <% layout('layout/boilerplate') %>
+
+<style>
+  label{
+    color:#842E66;
+    font-size: 22px;
+  }
+</style>
 <div class="container my-5">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-6 offset-lg-3 ">
-    <div class="card">
+    <div class="card mt-5">
         <div class="card-body">   
-            <h4 class="display-4 text-center">ADD NEW BRANCH</h4> 
-    <form method="post" action="/branch">
+            
+    <form method="post"  class="row" action="/branch">
         <div class="form-group mb-3">
             <label class="form-label" for="bname"> Branch Name:</label>
             <input type="text" name="Branch_Name" id="bname" class="form-control">
@@ -13,16 +20,23 @@
         <div class="form-group mb-3">
             <label class="form-label" for="location"> Branch Location:</label>
             <input type="text" name="Location" id="location" class="form-control">
-           
         </div> 
-        <div class="d-grid gap-2">
-     <button class="btn btn-primary">ADD BRANCH</button>
-     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        DELETE A BRANCH
+
+        <div class="col-6 d-grid gap-2 mb-3">
+          <button class="btn btn-secondary">ADD BRANCH</button>
+        </div>
+     <div class="col-6 d-grid gap-2 mb-3">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          DELETE A BRANCH
+            </button>
+        </div>
+        <div class="col-6 d-grid gap-2">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticModel">
+            UPDATE A BRANCH
           </button>
-      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticModel">
-        UPDATE A BRANCH
-      </button>
+    </div>
+    <div class="col-6 d-grid gap-2">
+        <a href="/branch/view" class="btn btn-secondary">View Branches</a>
     </div>
     </form>
 </div>

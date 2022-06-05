@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate') %> 
+<div class="container my-5">
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-body">
+        <table class="table table-secondary table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Branch Id</th>
+                <th scope="col">BRANCH NAME</th>
+                <th scope="col">BRANCH LOCATION</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let r of rows){ %> 
+                <tr>
+                    <td scope="row"><%= r.Branch_Id %></td>
+                    <td><%= r.BranchName%></td>
+                    <td><%= r.Location %></td>
+                  
+                </tr>
+            <% } %> 
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+

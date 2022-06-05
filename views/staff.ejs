@@ -1,12 +1,17 @@
 <% layout('layout/boilerplate') %>
-
+<style>
+  label{
+    color:#842E66;
+    font-size: 22px;
+  }
+</style>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-6 offset-3">
             <div class="card shadow">
                 <div class="card-body">
-        <h4 class="display-4 text-center">New Staff </h4>
-        <form action="/staff" method="post">
+
+        <form class="row" action="/staff" method="post">
         <div class="form-group mb-3">
                 <label class="form-label" for="name">Staff Name</label>
                 <input type="text" name="Staff_Name" id=""name class="form-control">
@@ -17,10 +22,10 @@
         </div>
         <div class="form-group mb-3">
                 <label class="form-label" for="gender"> Staff Gender:</label>
-                <input type="radio" name="Staff_Gender" id="male" value ="Male" >
+                <input type="radio" class="form-check-input" name="Staff_Gender" id="male" value ="Male" >
                 <label for="male" class="form-label">&nbsp Male</label>
-                <input type="radio" name="Staff_Gender" id="gender" value ="Female" >
-                <label for="female" class="form-label">&nbsp Female</label>
+                <input type="radio" name="Staff_Gender" id="gender" class="form-check-input" value ="Female" >
+                <label for="female" class="form-label" >&nbsp Female</label>
         </div>
         <div class="form-group mb-3">
                 <label class="form-label" id="phone"> Staff Phone:</label>
@@ -30,14 +35,21 @@
                 <label  class="form-label" id="branch_id"> Branch Id:</label>
                 <input type="text" name="Branch_Id" id="branch_id" class="form-control">
         </div>
-        <div class="d-grid gap-2">
-               <button class="btn btn-primary">Add Staff</button>
-               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                DELETE A STAFF
+        <div class="d-grid gap-2 col-6 mb-3">
+               <button class="btn btn-secondary">Add </button>
+        </div>
+        <div class="col-6 d-grid gap-2 mb-3">
+               <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                DELETE 
               </button>
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticModel">
-                UPDATE A STAFF
+            </div>
+            <div class="col-6 d-grid gap-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticModel">
+                UPDATE
               </button>
+        </div>
+        <div class="col-6 d-grid gap-2">
+          <a href="/staff/view" class="btn btn-secondary">VIEW</a>
         </div>
         </form>
     </div>
@@ -88,7 +100,7 @@
                   </div> 
                   
                 <div class="d-grid gap-2">
-                    <button class="btn btn-warning">UPDATE</button>
+                    <button class="btn btn-secondary">UPDATE</button>
                 </div>
             </form>
             
